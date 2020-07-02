@@ -88,7 +88,5 @@ app.set('port', port);
 app.listen(app.get('port'), () => {
   console.log(`app is listening in PORT ${app.get('port')}`);
 });
-//testcode
-//testcode
 // 테스트 코드에서 쓰기 위해
 module.exports = app;
