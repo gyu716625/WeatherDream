@@ -10,7 +10,7 @@ const port = 3001;
 
 // routers
 const userRouter = require('./routes/user');
-const chatRouter = require('./routes/chat');
+// const chatRouter = require('./routes/chat');
 
 /*
  * session(option)
@@ -80,7 +80,7 @@ app.get('/D*', (req, res) => {
   //   });
 });
 
-//base url routes
+// base url routes
 app.use('/user', userRouter);
 // app.use('/chat', chatRouter);
 
