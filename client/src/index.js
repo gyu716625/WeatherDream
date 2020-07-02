@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './component/App';
-import { WEATHER_API_KEY } from "../config/openWeather";
+import App from './components/App';
+
  
 ReactDOM.render(
-  <App WEATHER_API_KEY={WEATHER_API_KEY} />,
+  <App />,
   document.getElementById("root")
 );
 
