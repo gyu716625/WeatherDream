@@ -20,5 +20,11 @@
 >- 본문은 "어떻게" 보다 "무엇을","왜"를 설명한다.
 
 # PR 할 때 
+
 - PR title ==> commit type/이슈번호/이슈제목
 - PR 시 해당 이슈에만 Link 걸기 sprint NONO.
+
+## PR template
+> ### PR 내용
+> ### 닫을 이슈
+> ### 소요시간
