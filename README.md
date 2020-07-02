@@ -3,7 +3,7 @@
 + body엔 위 커밋 내용에서 어떤일이 일어났는지 (수정, 추가 등등) 한 줄 안띄고!
 + 스타일 설명(css 등)
 > ## Commit Template
->##### Type
+>### Type
 >feat     : 기능 (새로운 기능)  
 >fix      : 버그 (버그 수정)  
 >refactor : 리팩토링  
