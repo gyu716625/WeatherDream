@@ -19,6 +19,6 @@
 - 제목과 본문(body)을 한 줄 띄워 분리하기  
 - 본문은 "어떻게" 보다 "무엇을","왜"를 설명한다.
 
-#PR 할 때 
+# PR 할 때 
 - PR title ==> commit type/이슈번호/이슈제목
 - PR 시 해당 이슈에만 Link 걸기 sprint NONO.
