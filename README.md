@@ -1,4 +1,4 @@
-# commit Rule 
+# Commit Rule 
 + commit 첫 줄은 Type : 간략한 type에 대한 설명 그 다음 한 줄 띄고 body 입력
 + body엔 위 커밋 내용에서 어떤일이 일어났는지 (수정, 추가 등등) 한 줄 안띄고!
 + 스타일 설명(css 등)
