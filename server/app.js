@@ -9,10 +9,10 @@ const app = express();
 const port = 3001;
 
 // routers
+const signinRouter = require('./routes/signin');
+const signupRouter = require('./routes/signup');
 // const chatRouter = require('./routes/chat');
 // const mypageRouter = require('./routes/mypage');
-const signinRouter = require('./routes/signin');
-// const signupRouter = require('./routes/signup');
 
 
 /*
@@ -84,7 +84,7 @@ app.use(
 
 // page routes
 app.use('/signin', signinRouter);
-// app.use('/signup', signupRouter);
+app.use('/signup', signupRouter);
 // app.use('/mypage', mypageRouter);
 // app.use('/chat', chatRouter);
 
