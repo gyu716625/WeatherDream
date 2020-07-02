@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const { urls } = require('./models');
+// const { urls } = require('./models');
 // const morgan = require('morgan');
 const app = express();
 const port = 3001;
@@ -13,7 +13,6 @@ const signinRouter = require('./routes/signin');
 const signupRouter = require('./routes/signup');
 // const chatRouter = require('./routes/chat');
 // const mypageRouter = require('./routes/mypage');
-
 
 /*
  * session(option)
@@ -25,8 +24,8 @@ app.use(
   session({
     secret: '@codestates',
     resave: false,
-    saveUninitialized: true
-  })
+    saveUninitialized: true,
+  }),
 );
 /*
  * cookieParser() - 넘어온 Cookie 데이터를 관리하기 쉽게 JSON 객체로 변환해 주는 라이브러리
@@ -49,8 +48,8 @@ app.use(
   cors({
     origin: ['http://localhost:3000'],
     methods: ['GET', 'POST', 'PATCH'],
-    credentials: true
-  })
+    credentials: true,
+  }),
 );
 // ? POSTMAN을 통한 test에 필요할지도 모릅니다. logging을 활용하세요.
 // app.use(morgan('dev'));
