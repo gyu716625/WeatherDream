@@ -9,10 +9,8 @@ const app = express();
 const port = 3001;
 
 // routers
-const signinRouter = require('./routes/signin');
-const signupRouter = require('./routes/signup');
-// const chatRouter = require('./routes/chat');
-// const mypageRouter = require('./routes/mypage');
+const userRouter = require('./routes/user');
+const chatRouter = require('./routes/chat');
 
 /*
  * session(option)
@@ -57,34 +55,33 @@ app.use(
 // app.get('/', (req, res) => {
 //   res.status(200).send('Success');
 // });
-// app.get('/D*', (req, res) => {
-//   urls
-//     .findOne({
-//       where: {
-//         code: 'D' + req.params[0] // req.params는 url중 도메인 명 다음부터 쌓인다 ( https://naver.com/params[0]/params[1]/params[2])
-//       }
-//     })
-//     .then(result => {
-//       if (result) {
-//         result.update({
-//           // sequelize에서 반환되는 데이터는 단순히 결과값의 데이터 객체가 아니라 sequelize의 함수를 포함하고 있다.
-//           visits: result.visits + 1 // 다만 데이터에 접근할 경우에는 바로 접근 가능
-//         });
-//         res.redirect(result.url);
-//       } else {
-//         res.sendStatus(204); // No Content
-//       }
-//     })
-//     .catch(error => {
-//       console.log(error);
-//       res.sendStatus(500); // Server Error
-//     });
-// });
+app.get('/D*', (req, res) => {
+  res.send(req.params);
+  // urls
+  //   .findOne({
+  //     where: {
+  //       code: 'D' + req.params[0] // req.params는 url중 도메인 명 다음부터 쌓인다 ( https://naver.com/params[0]/params[1]/params[2])
+  //     }
+  //   })
+  //   .then(result => {
+  //     if (result) {
+  //       result.update({
+  //         // sequelize에서 반환되는 데이터는 단순히 결과값의 데이터 객체가 아니라 sequelize의 함수를 포함하고 있다.
+  //         visits: result.visits + 1 // 다만 데이터에 접근할 경우에는 바로 접근 가능
+  //       });
+  //       res.redirect(result.url);
+  //     } else {
+  //       res.sendStatus(204); // No Content
+  //     }
+  //   })
+  //   .catch(error => {
+  //     console.log(error);
+  //     res.sendStatus(500); // Server Error
+  //   });
+});
 
-// page routes
-app.use('/signin', signinRouter);
-app.use('/signup', signupRouter);
-// app.use('/mypage', mypageRouter);
+//base url routes
+app.use('/user', userRouter);
 // app.use('/chat', chatRouter);
 
 app.set('port', port);
