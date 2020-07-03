@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // 많은 채팅을 가질 수 있음
   chatRoom.associate = function(models) {
-      chatRoom.hasMay(models.users)
+      chatRoom.hasMany(models.users)
   };
   return chatRoom;
 };
