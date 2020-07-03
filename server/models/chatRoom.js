@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       mypage: DataTypes.BOOLEAN,
       wether: DataTypes.STRING,
     },
-    {}
+    {},
   );
 
   // 많은 채팅을 가질 수 있음
-  chatRoom.associate = function(models) {
-      chatRoom.hasMany(models.users)
+  chatRoom.associate = (models) => {
+    chatRoom.hasMany(models.users);
   };
   return chatRoom;
 };
