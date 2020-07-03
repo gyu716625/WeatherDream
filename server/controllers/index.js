@@ -1,6 +1,4 @@
-module.exports ={
-    chatController: require('./chat'),
-    mypageController: require('./mypage'),
-    signinController: require('./signin'),
-    signupController: require('./signup')
-}
+module.exports = {
+  chatController: require('./chat'),
+  userController: require('./user'),
+};
