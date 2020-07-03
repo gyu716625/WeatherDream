@@ -6,14 +6,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       email: DataTypes.STRING,
       username: DataTypes.STRING,
-      password: DataTypes.STRING
+      password: DataTypes.STRING,
     },
-    {}
+    {},
   );
 
-  //join같은 관계를 정의할 때, 사용
-  users.associate = function(models) {
-      users.belongsTo(models.chatRoom)
+  // join같은 관계를 정의할 때, 사용
+  users.associate = (models) => {
+    users.belongsTo(models.chatRoom);
   };
   return users;
 };
