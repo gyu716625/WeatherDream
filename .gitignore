@@ -1,3 +1,7 @@
 /server/node_modules/
 /client/node_modules/
+<<<<<<< HEAD
 /client/hahaha.txt/
+=======
+/server/migrations/
+>>>>>>> 348b33ce3b458269b18751e9689df74ddf37c1da

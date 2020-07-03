@@ -10,6 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
+  
 
   componentDidMount() {
     const script = document.createElement("script");
