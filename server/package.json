@@ -26,8 +26,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint ./* --quiet",
-      "pre-push": "npm test"
+      "pre-commit": "eslint ./ --quiet",
+      "pre-push": ""
     }
   }
 }
