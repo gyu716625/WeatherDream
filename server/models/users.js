@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
 
-  // join같은 관계를 정의할 때, 사용
+  // user는 많은 채팅을 가질 수 있다.
   users.associate = (models) => {
-    users.belongsTo(models.chatRoom);
+    users.hasMany(models.chatRooms, { foreignKey: 'user_id' });
   };
   return users;
 };

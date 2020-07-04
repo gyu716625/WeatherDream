@@ -16,7 +16,7 @@
         "import/no-dynamic-require": "off",
         "prefer-template": "off",
         "no-path-concat": "off",
-        "object-shortha":"off",
-        "consistent-ret":"off"
+        "object-shorthand":"off",
+        "consistent-return":"off"
     }
 }

@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = (sequelize, DataTypes) => {
-  const chatRoom = sequelize.define(
-    'chatRoom',
+  const chatRooms = sequelize.define(
+    'chatRooms',
     {
       context: DataTypes.STRING,
       country: DataTypes.STRING,
@@ -15,9 +15,9 @@ module.exports = (sequelize, DataTypes) => {
     {},
   );
 
-  // 많은 채팅을 가질 수 있음
-  chatRoom.associate = (models) => {
-    chatRoom.hasMany(models.users);
+  // 채팅은 하나당 하나의 아이디만 가질 수 있다.
+  chatRooms.associate = (models) => {
+    chatRooms.belongsTo(models.users, { foreignKey: 'user_id' });
   };
-  return chatRoom;
+  return chatRooms;
 };
