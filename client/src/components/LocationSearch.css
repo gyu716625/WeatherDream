@@ -1,0 +1,50 @@
+#map {
+  width: 90%;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 7%;
+}
+
+.locationSearch {
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+}
+
+.locationInput {
+  outline: none;
+  width: 70%;
+  height: 30px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 4px dashed rgb(255, 146, 146);
+  margin: 4%;
+  vertical-align: middle;
+}
+
+.locationBtn {
+  vertical-align: middle;
+  background: none;
+  border: none;
+  width: 10%;
+  height: 40px;
+  cursor: pointer;
+}
+
+.locationBtn > * {
+  width: 100%;
+  height: 100%;
+}
+
+.successBtn {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  background: none;
+  border: none;
+  font-size: 25px;
+  color: rgb(255, 146, 146);
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
