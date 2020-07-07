@@ -20,13 +20,15 @@
         var socket = io();
         $('form').submit(function(e) {
         e.preventDefault(); // prevents page reloading
-        socket.emit('chat message', $('#m').val());
+        socket.emit('chat message', JSON.stringify({user_id: 1, weather: '맑음', context: $('#m').val(), country:'제주'}));
         $('#m').val('');
         return false;
         });
         
+        //받는 부분
         socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
+        let receivemsg = JSON.parse(msg)
+        $('#messages').append($('<li>').text(`${receivemsg.username}: ${receivemsg.context}`));
         });
     });
     </script>

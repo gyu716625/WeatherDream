@@ -19,6 +19,8 @@
         "object-shorthand":"off",
         "consistent-return":"off",
         "no-param-reassign":"off",
-        "arrow-body-style":"off"
+        "arrow-body-style":"off",
+        "object-curly-newline":"off",
+        "camelcase":"off"
     }
 }
