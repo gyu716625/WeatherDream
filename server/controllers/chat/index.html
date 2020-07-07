@@ -20,7 +20,7 @@
         var socket = io();
         $('form').submit(function(e) {
         e.preventDefault(); // prevents page reloading
-        socket.emit('chat message', JSON.stringify({user_id: 1, weather: '맑음', context: $('#m').val(), country:'제주'}));
+        socket.emit('chat message', JSON.stringify({userId: 1, weather: 'good!', context: $('#m').val(), country:'jeju'}));
         $('#m').val('');
         return false;
         });
