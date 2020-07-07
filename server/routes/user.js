@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-// get signinController
+// get userController
 const { userController } = require('../controllers');
 
 // * POST /signin

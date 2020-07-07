@@ -8,10 +8,11 @@ const MySQLStore = require('express-mysql-session')(session);
 // const morgan = require('morgan');
 const app = express();
 const port = 3001;
+// const http = require('http').createServer(app); // Express app는 HTTP 서버에 제공 할 수있는 함수 핸들러로 초기화
 
 // routers
 const userRouter = require('./routes/user');
-// const chatRouter = require('./routes/chat');
+const chatRouter = require('./routes/chat');
 
 /*
  * session(option)
@@ -90,7 +91,7 @@ app.get('/D*', (req, res) => {
 
 // base url routes
 app.use('/user', userRouter);
-// app.use('/chat', chatRouter);
+app.use('/chat', chatRouter);
 
 app.set('port', port);
 app.listen(app.get('port'), () => {
