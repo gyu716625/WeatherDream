@@ -12,6 +12,7 @@ router.post('/signin', userController.signin.post);
 router.post('/signup', userController.signup.post);
 
 // * GET /signout
+router.get('/signout', userController.signout.get);
 
 // * GET /mypage/info/:id
 router.get('/mypage/info/:userId', userController.mypage.info.get);

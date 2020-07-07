@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const MySQLStore = require('express-mysql-session')(session);
 // const { urls } = require('./models');
 // const morgan = require('morgan');
 const app = express();
@@ -23,6 +24,13 @@ app.use(
     secret: '@codestates',
     resave: false,
     saveUninitialized: true,
+    store: new MySQLStore({
+      host: 'localhost',
+      port: 3306,
+      user: 'root',
+      password: process.env.DATABASE_PASSWORD,
+      database: 'session',
+    }),
   }),
 );
 /*
