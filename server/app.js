@@ -8,7 +8,9 @@ const MySQLStore = require('express-mysql-session')(session);
 // const morgan = require('morgan');
 const app = express();
 const port = 3001;
-// const http = require('http').createServer(app); // Express app는 HTTP 서버에 제공 할 수있는 함수 핸들러로 초기화
+
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
 // routers
 const userRouter = require('./routes/user');
@@ -93,9 +95,25 @@ app.get('/D*', (req, res) => {
 app.use('/user', userRouter);
 app.use('/chat', chatRouter);
 
+// app.get('/chat', (req, res)=>{
+//   res.sendFile(__dirname + '/controllers/chat/index.html');
+
+//     io.on('connection', (socket) => {
+//         console.log('a user connected');
+//         socket.on('disconnect', () => {
+//           console.log('user disconnected');
+//         });
+
+//         socket.on('chat message', (msg) => {
+//             console.log('message: ' + msg);
+//             io.emit ( 'chat message' , msg);
+//           });
+//       });
+// });
+
 app.set('port', port);
-app.listen(app.get('port'), () => {
+http.listen(app.get('port'), () => {
   console.log(`app is listening in PORT ${app.get('port')}`);
 });
 // 테스트 코드에서 쓰기 위해
-module.exports = app;
+module.exports = { app: app, io: io };
