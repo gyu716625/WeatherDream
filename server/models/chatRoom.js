@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       chat_unlike: DataTypes.INTEGER,
       user_id: DataTypes.INTEGER,
       mypage: DataTypes.BOOLEAN,
-      wether: DataTypes.STRING,
+      weather: DataTypes.STRING,
     },
     {},
   );

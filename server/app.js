@@ -3,14 +3,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const MySQLStore = require('express-mysql-session')(session);
 // const { urls } = require('./models');
 // const morgan = require('morgan');
 const app = express();
 const port = 3001;
 
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
 // routers
 const userRouter = require('./routes/user');
-// const chatRouter = require('./routes/chat');
+const chatRouter = require('./routes/chat');
 
 /*
  * session(option)
@@ -23,6 +27,13 @@ app.use(
     secret: '@codestates',
     resave: false,
     saveUninitialized: true,
+    store: new MySQLStore({
+      host: 'localhost',
+      port: 3306,
+      user: 'root',
+      password: process.env.DATABASE_PASSWORD,
+      database: 'session',
+    }),
   }),
 );
 /*
@@ -82,11 +93,27 @@ app.get('/D*', (req, res) => {
 
 // base url routes
 app.use('/user', userRouter);
-// app.use('/chat', chatRouter);
+app.use('/chat', chatRouter);
+
+// app.get('/chat', (req, res)=>{
+//   res.sendFile(__dirname + '/controllers/chat/index.html');
+
+//     io.on('connection', (socket) => {
+//         console.log('a user connected');
+//         socket.on('disconnect', () => {
+//           console.log('user disconnected');
+//         });
+
+//         socket.on('chat message', (msg) => {
+//             console.log('message: ' + msg);
+//             io.emit ( 'chat message' , msg);
+//           });
+//       });
+// });
 
 app.set('port', port);
-app.listen(app.get('port'), () => {
+http.listen(app.get('port'), () => {
   console.log(`app is listening in PORT ${app.get('port')}`);
 });
 // 테스트 코드에서 쓰기 위해
-module.exports = app;
+module.exports = { app: app, io: io };
