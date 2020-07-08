@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { kakaoMap_API_KEY } from '../API_KEY';
 import './LocationSearch.css';
 import { GoSearch } from "react-icons/go";
+import MyPage from './MyPage';
+import { Link } from "react-router-dom";
 
 // 확인 버튼을 클릭하면 라우터로 main page이동 설정만 해주면 끝!!!!헿
 
@@ -39,8 +41,8 @@ export default class LocationSearch extends Component {
         geocoder.addressSearch(locationValue, function (result, status) {
           // 정상적으로 검색이 완료됐으면
           if (status === kakao.maps.services.Status.OK) {
+            // y : 경도 , x : 위도
             var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
             // 결과값으로 받은 위치를 마커로 표시합니다
             var marker = new kakao.maps.Marker({
               map: map,
@@ -67,24 +69,32 @@ export default class LocationSearch extends Component {
   
   render() {
     return (
-      <div className="locationSearch">
-        <section className="searchSection">
-          <input
-            className="locationInput"
-            type="text"
-            placeholder="예) 중구 세종대로 110"
-          />
-          <button
-            className="locationBtn"
-            type="submit"
-            onClick={() => this.locationSettingHandler()}
-          >
-            <GoSearch />
-          </button>
-        </section>
-        <div id="map"></div>
-        <button type="button" className="successBtn">OK</button>
-      </div>
+      <React.Fragment>
+        <MyPage/>
+        <div className="locationSearch">
+          <section className="searchSection">
+            <input
+              className="locationInput"
+              type="text"
+              placeholder="예) 중구 세종대로 110"
+            />
+            <button
+              className="locationBtn"
+              type="submit"
+              onClick={() => this.locationSettingHandler()}
+            >
+              <GoSearch />
+            </button>
+          </section>
+          <div id="map"></div>
+          <Link to={'/Weather'}>
+            <button type="button" className="successBtn">
+              OK
+            </button>
+          </Link>
+          
+        </div>
+      </React.Fragment>
     );
   }
 }
