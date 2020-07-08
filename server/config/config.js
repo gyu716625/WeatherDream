@@ -12,7 +12,7 @@ module.exports = {
     username: 'root',
     password: process.env.DATABASE_PASSWORD,
     database: 'weatherdream',
-    host: 'localhost',
+    host: 'first-project.cjp4wts07bvp.us-east-2.rds.amazonaws.com',
     port: 13306,
     dialect: 'mysql',
     logging: false,
