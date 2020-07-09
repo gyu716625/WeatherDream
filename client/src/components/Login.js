@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Route, withRouter, Redirect } from 'react-router-dom';
 import Signup from './Signup';
 import LocationSearch from './LocationSearch';
+import cookie from 'react-cookies';
 
 class Login extends React.Component {
   constructor(props) {
@@ -23,19 +24,25 @@ class Login extends React.Component {
           <h1>Sign In</h1>
           <form
             onSubmit={(e) => {
+              console.log('submit');
               e.preventDefault();
               fetch("http://14.50.138.127:3001/user/signin", {
                 method: "POST",
-                body: JSON.stringify(this.state),
+                body: JSON.stringify({email:'q@q',password:'q'}),
                 credentials: "include",
                 headers: {
                   "Content-Type": "application/json",
                 },
               }).then((res) => {
                 if (res.status === 200) {
-                  this.props.loginHandler(true); // 로그인 true 변경
-                  //this.props.getUserInfo();
+                  this.props.history.push("/LocationSearch");
+                  return res.json();  
                 }
+              }).then((res)=>{
+                console.log(res);
+                //this.loginHandler(res.isLogin); // 로그인 true 변경
+                cookie.save('isLogin', res.isLogin);
+                //this.props.getUserInfo();
               });
             }}
           >
@@ -67,7 +74,6 @@ class Login extends React.Component {
                 onChange={this.handleInputValue("password")}
               ></input>
             </div>
-            <Link to={"/LocationSearch"}>
               <button
                 style={{
                   width: "200px",
@@ -80,7 +86,6 @@ class Login extends React.Component {
               >
                 Submit
               </button>
-            </Link>
             <div>
               <Link to={"/Signup"}>Join Us</Link>
             </div>

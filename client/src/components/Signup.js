@@ -38,7 +38,7 @@ class Signup extends React.Component {
                 } else if (res.status === 409) {
                   alert('You are already registered.');
                 }
-                console.log("res:", res);
+                //console.log("res:", res);
               });
 
               
