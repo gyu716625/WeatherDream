@@ -28,11 +28,11 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: new MySQLStore({
-      host: 'first-project.cjp4wts07bvp.us-east-2.rds.amazonaws.com',
-      port: 13306,
+      host: 'localhost',
+      port: 3306,
       user: 'root',
       password: process.env.DATABASE_PASSWORD,
-      database: 'weatherdream',
+      database: 'session',
     }),
   }),
 );
