@@ -60,56 +60,10 @@ app.use(
     credentials: true,
   }),
 );
-// ? POSTMAN을 통한 test에 필요할지도 모릅니다. logging을 활용하세요.
-// app.use(morgan('dev'));
-// TODO : GET / 요청에 대한 응답을 작성해주세요. (api 구현을 가볍게 시작해보세요.)
-// app.get('/', (req, res) => {
-//   res.status(200).send('Success');
-// });
-app.get('/D*', (req, res) => {
-  res.send(req.params);
-  // urls
-  //   .findOne({
-  //     where: {
-  //       code: 'D' + req.params[0] // req.params는 url중 도메인 명 다음부터 쌓인다 ( https://naver.com/params[0]/params[1]/params[2])
-  //     }
-  //   })
-  //   .then(result => {
-  //     if (result) {
-  //       result.update({
-  //         // sequelize에서 반환되는 데이터는 단순히 결과값의 데이터 객체가 아니라 sequelize의 함수를 포함하고 있다.
-  //         visits: result.visits + 1 // 다만 데이터에 접근할 경우에는 바로 접근 가능
-  //       });
-  //       res.redirect(result.url);
-  //     } else {
-  //       res.sendStatus(204); // No Content
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //     res.sendStatus(500); // Server Error
-  //   });
-});
 
 // base url routes
 app.use('/user', userRouter);
 app.use('/chat', chatRouter);
-
-// app.get('/chat', (req, res)=>{
-//   res.sendFile(__dirname + '/controllers/chat/index.html');
-
-//     io.on('connection', (socket) => {
-//         console.log('a user connected');
-//         socket.on('disconnect', () => {
-//           console.log('user disconnected');
-//         });
-
-//         socket.on('chat message', (msg) => {
-//             console.log('message: ' + msg);
-//             io.emit ( 'chat message' , msg);
-//           });
-//       });
-// });
 
 app.set('port', port);
 http.listen(app.get('port'), () => {

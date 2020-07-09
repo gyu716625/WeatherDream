@@ -22,8 +22,9 @@ class Login extends React.Component {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              
-              fetch('http://14.50.138.127:3001/user/signin', {
+
+              fetch('http://localhost:3001/user/signin', {
+
                 method: 'POST',
                 body: JSON.stringify(this.state),
                 credentials: 'include',
