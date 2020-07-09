@@ -15,16 +15,16 @@ class Login extends React.Component {
     this.setState({ [key]: e.target.value });
   };
   render() {
-    return this.props.isLogin ? (
-      <Redirect to="/mypage" />
-    ) : (
+    return (
       <div>
         <center>
           <h1>Sign In</h1>
           <form
             onSubmit={(e) => {
               e.preventDefault();
+
               fetch('http://localhost:3001/user/signin', {
+
                 method: 'POST',
                 body: JSON.stringify(this.state),
                 credentials: 'include',
@@ -33,7 +33,7 @@ class Login extends React.Component {
                 },
               }).then((res) => {
                 if (res.status === 200) {
-                  this.props.loginHandler(true);
+                  this.props.loginHandler(true);  // 로그인 true 변경
                   this.props.getUserInfo();
                 }
               });
@@ -89,4 +89,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

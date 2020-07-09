@@ -7,13 +7,13 @@ class Signup extends React.Component {
       email: '',
       password: '',
       username: '',
-      isSignup: false,
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
+
   render() {
     return this.state.isSignup ? (
       <Redirect to="/login" />
@@ -24,7 +24,7 @@ class Signup extends React.Component {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              let a = fetch('http://localhost:3001/user/signup', {
+              fetch('http://14.50.138.127:3001/user/signup', {
                 method: 'POST',
                 body: JSON.stringify(this.state),
                 headers: {
@@ -33,14 +33,15 @@ class Signup extends React.Component {
               }).then((res) => {
                 if (res.status === 200) {
                   alert('Membership. Please log in.');
-                  this.setState({
-                    isSignup: true,
-                  });
+                  this.props.history.push("/Login");
                 } else if (res.status === 409) {
                   alert('You are already registered.');
                 }
+                console.log("res:", res);
               });
-              console.log(a);
+
+              
+
             }}
           >
             <div>
@@ -103,4 +104,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);

@@ -26,12 +26,20 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      isLogin: false,
+      isLogin: () => {
+        fetch('http://14.50.138.127:3001/')
+        .then((res) => res.json())
+        .then((res) => {
+          return res.message;
+    });
+      },
       userInfo: { username: '', email: '', mobile: '' },
     };
+  
     this.loginHandler = this.loginHandler.bind(this);
     this.getUserInfo = this.getUserInfo.bind(this);
   }
+
   loginHandler(bool) {
     this.setState({
       isLogin: bool,
@@ -51,6 +59,14 @@ class App extends React.Component {
 
   render() {
     const { isLogin, userInfo } = this.state;
+    if(this.state.isLogin)
+    {
+      return(
+        <Redirect to="/LocationSearch" />
+      );
+    }
+
+
     return (
       <div>
         <Router>
@@ -61,7 +77,7 @@ class App extends React.Component {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="nav-link" to={"/sign-in"}>Login</Link>
+                <Link className="nav-link" to={"/sign-in"} isLogin = {this.state.isLogin} getUserInfo= {this.getUserInfo}>Login</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
@@ -77,7 +93,7 @@ class App extends React.Component {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <Switch>
-            <Route exact path='/' component={Login} />
+            <Route exact path='/' component={Login}/>
             <Route path="/sign-in" component={Login} />
             <Route path="/sign-up" component={Signup} />
           </Switch>
