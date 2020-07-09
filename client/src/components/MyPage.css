@@ -1,0 +1,156 @@
+.sideMenu {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 103;
+	transform: translateX(-85%);
+	height: 100%;
+	width: 65%;
+	transition: all 800ms cubic-bezier(.8, 0, .33, 1);
+	border-radius: 0% 0% 100% 50%;
+}
+
+.sideMenu.active {
+	transform: translateX(0px);
+	border-radius: 0% 0% 0% 0%;
+	background: rgb(193, 255, 255);
+}
+
+.sideMenu .menu-btn {
+	position: absolute;
+	top: 5%;
+	right: 5%;
+	padding: 0;
+	width: 30px;
+	cursor: pointer;
+	z-index: 2;
+}
+
+.sideMenu .menu-btn .line {
+	padding: 0;
+	width: 30px;
+	background: rgb(2, 2, 2);
+	height: 2px;
+	margin: 5px 0;
+	transition: all 700ms cubic-bezier(.9, 0, .33, 1);
+}
+
+.sideMenu .menu-btn .line.line--1 {
+	width: 30px;
+	transform: rotate(0) translateY(0);
+}
+
+.sideMenu .menu-btn .line.line--1.line-cross {
+	width: 30px;
+	transform: rotate(45deg) translateY(10px);
+	background: rgba(0,0,0,0.6);
+}
+
+.sideMenu .menu-btn .line.line--2 {
+	width: 28px;
+	transform: translateX(0);
+}
+
+.sideMenu .menu-btn .line.line--2.line-fade-out {
+	width: 28px;
+	transform: translate(30px);
+	opacity: 0;
+}
+
+.sideMenu .menu-btn .line.line--3 {
+	width: 20px;
+	transform: rotate(0) translateY(0);
+}
+
+.sideMenu .menu-btn .line.line--3.line-cross {
+	width: 30px;
+	transform: rotate(-45deg) translateY(-10px);
+	background: rgba(0,0,0,0.6);
+}
+
+.sideMenu .nav-links {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	transform: translateX(-100px);
+	opacity: 0;
+	transition: all 900ms cubic-bezier(.9, 0, .33, 1);
+}
+
+.sideMenu .nav-links.fade-in {
+	opacity: 1;
+	transform: translateX(0px);
+}
+
+.sideMenu-link {
+	display: block;
+	margin: 10% 0;
+	color: rgb(0, 0, 0);
+	font-size: 40px;
+	font-weight: 600;
+	transition: all 400ms ease;
+}
+
+.sideMenu-link:hover{
+	color: #d9524a;
+}
+
+.pageContent {
+  width: 90%;
+  height: 90%;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.userInfo {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.userInfo > svg {
+  width: 50%;
+  height: 50%;
+  stroke: rgb(255, 182, 182);
+  fill: rgb(255, 182, 182);
+}
+
+.userInfo > .userName {
+  display: block;
+  font-size: 45px;
+  font-weight: 600;
+  color: rgb(255, 182, 182);
+  margin: 3%;
+}
+
+.locationInfo {margin: 20% 0 10% 0; cursor: pointer;}
+.commentList {cursor: pointer;}
+
+.infoContent {
+  font-size: 30px;
+  color: rgb(55, 55, 55);
+  margin-right: 10%;
+  font-weight: 700;
+}
+
+.locationInfo > svg, .commentList > svg {
+  width: 40px;
+  height: 40px;
+}
+
+
+/* 반응형 css */
+/* 421이상 859이하 */
+@media screen and (max-width: 859px) {
+  .sideMenu {
+		transform: translateX(-85%);
+		width: 100%;
+	}
+}
+
+

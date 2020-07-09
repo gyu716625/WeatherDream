@@ -7,7 +7,7 @@ module.exports = {
     const { email, password } = req.body;
     console.log('check!');
     // req.session data를 확인 (생성 또는 기존 session이 존재하면 가져온다)
-    // var sess = req.session;(세션 기능 구현)
+    const sess = req.session; // 세션 기능 구현
 
     // 받은 password로 암호화 하는 로직도 필요
 
@@ -44,7 +44,8 @@ module.exports = {
         } else {
           // 데이터베이스에 유저가 존재한다면
           // 찾은 유저 id값을 session userid 값에 매핑해주는 작업 필요(세션 기능 구현)
-
+          sess.userId = result.id;
+          res.cookie('isLogined', 'true');
           res.status(200).json({
             id: result.id,
           });
