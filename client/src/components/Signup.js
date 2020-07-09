@@ -7,7 +7,6 @@ class Signup extends React.Component {
       email: '',
       password: '',
       username: '',
-      mobile: '',
       isSignup: false,
     };
     this.handleInputValue = this.handleInputValue.bind(this);
@@ -25,14 +24,14 @@ class Signup extends React.Component {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              let a = fetch('http://localhost:4000/signup', {
+              let a = fetch('http://localhost:3001/user/signup', {
                 method: 'POST',
                 body: JSON.stringify(this.state),
                 headers: {
                   'Content-Type': 'application/json',
                 },
               }).then((res) => {
-                if (res.status === 201) {
+                if (res.status === 200) {
                   alert('Membership. Please log in.');
                   this.setState({
                     isSignup: true,
@@ -80,17 +79,6 @@ class Signup extends React.Component {
                 }}
                 onChange={this.handleInputValue('username')}
                 placeholder="Name"
-              ></input>
-              <input
-                style={{
-                  width: '195px',
-                  height: '30px',
-                  margin: '5px',
-                  borderRadius: '5px',
-                }}
-                type="mobile"
-                onChange={this.handleInputValue('mobile')}
-                placeholder="Phone"
               ></input>
             </div>
             <div>
