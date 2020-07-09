@@ -1,11 +1,18 @@
 const { users } = require('../../models');
 const { chatRooms } = require('../../models');
+const e = require('express');
 
 module.exports = {
   info: {
     get: (req, res) => {
       console.log(req.params);
-      users
+
+      const sess = req.session; // 세션 기능 구현
+
+      // 세션에 담겨있는 값이 일치하면 동작하도록 구현
+      if(sess.isLogined === true && sess.userId === req.params)
+      {
+        users
         .findOne({
           where: {
             id: Number(req.params.userId),
@@ -23,12 +30,19 @@ module.exports = {
         .catch((err) => {
           res.status(404).json({ message: err });
         });
+      }
+      else
+      {
+        res.status(404).json({message: 'Not Found'});
+      }      
     },
   },
   diary: {
     get: (req, res) => {
       console.log(req.params);
-      chatRooms
+      if(sess.isLogined === true && sess.userId === req.params)
+      {
+        chatRooms
         .findAll({
           where: {
             user_id: Number(req.params.userId),
@@ -48,6 +62,11 @@ module.exports = {
         .catch((err) => {
           res.status(404).json({ message: err });
         });
+      }
+      else
+      {
+        res.status(404).json({message: 'Not Found'});
+      }          
     },
   },
 };

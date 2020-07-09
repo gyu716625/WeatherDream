@@ -8,28 +8,7 @@ module.exports = {
     console.log('check!');
     // req.session data를 확인 (생성 또는 기존 session이 존재하면 가져온다)
     const sess = req.session; // 세션 기능 구현
-
-    // 받은 password로 암호화 하는 로직도 필요
-
-    // insert TestCode
-    // users
-    //   .findOrCreate({
-    //     where: {
-    //       email: email
-    //     },
-    //     defaults: {
-    //       password: password,
-    //       username: username
-    //     }
-    //   })
-    //   .then(async ([user, created]) => {
-    //     if (!created) {
-    //       return res.status(409).send('Already exists user');
-    //     }
-    //     const data = await user.get({ plain: true });
-    //     res.status(200).json(data);
-    //   });
-
+    console.log(sess.id);
     // sequalize를 이용해서 데이터베이스에서 사용자가 있는지, 비밀번호는 맞는지 찾는다.
     users
       .findOne({
@@ -45,7 +24,9 @@ module.exports = {
           // 데이터베이스에 유저가 존재한다면
           // 찾은 유저 id값을 session userid 값에 매핑해주는 작업 필요(세션 기능 구현)
           sess.userId = result.id;
-          res.cookie('isLogined', 'true');
+          sess.isLogined = true;  // 로그인에 성공했다는 값을 세션에 넣어준다.
+          // res.cookie('isLogined', 'true');
+          // 로그인에 성공했다면 res.redirect로 페이지 이동을 응답을 해줘도 된다.(클라이언트와 맞춰보기)
           res.status(200).json({
             id: result.id,
           });
