@@ -33,7 +33,7 @@ class Signup extends React.Component {
               }).then((res) => {
                 if (res.status === 200) {
                   alert('Membership. Please log in.');
-                  this.props.history.push("/Login");
+                  this.props.history.push("/sign-in");
                 } else if (res.status === 409) {
                   alert('You are already registered.');
                 }

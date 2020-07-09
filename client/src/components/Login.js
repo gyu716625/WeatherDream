@@ -22,9 +22,8 @@ class Login extends React.Component {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-
-              fetch('http://localhost:3001/user/signin', {
-
+              
+              fetch('http://14.50.138.127:3001/user/signin', {
                 method: 'POST',
                 body: JSON.stringify(this.state),
                 credentials: 'include',
@@ -34,7 +33,7 @@ class Login extends React.Component {
               }).then((res) => {
                 if (res.status === 200) {
                   this.props.loginHandler(true);  // 로그인 true 변경
-                  this.props.getUserInfo();
+                  //this.props.getUserInfo();
                 }
               });
             }}
@@ -80,7 +79,7 @@ class Login extends React.Component {
               Submit
             </button>
             <div>
-              <Link to="/signup">Join Us</Link>
+              <Link to="/sign-up">Join Us</Link>
             </div>
           </form>
         </center>
