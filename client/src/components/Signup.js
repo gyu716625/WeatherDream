@@ -14,6 +14,7 @@ class Signup extends React.Component {
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
+
   render() {
     return this.state.isSignup ? (
       <Redirect to="/login" />
