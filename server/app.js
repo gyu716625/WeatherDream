@@ -13,6 +13,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 // routers
+const basicRouter = require('./routes/basic');
 const userRouter = require('./routes/user');
 const chatRouter = require('./routes/chat');
 
@@ -62,6 +63,7 @@ app.use(
 );
 
 // base url routes
+app.use('/', basicRouter);
 app.use('/user', userRouter);
 app.use('/chat', chatRouter);
 
