@@ -11,9 +11,11 @@ class Signup extends React.Component {
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
+
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
+  
   render() {
     return this.state.isSignup ? (
       <Redirect to="/login" />
