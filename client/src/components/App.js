@@ -19,16 +19,36 @@ class App extends React.Component {
       isLogin: false,
       userInfo: { username: '', email: '', mobile: '' },
     };
+  
     this.loginHandler = this.loginHandler.bind(this);
     this.getUserInfo = this.getUserInfo.bind(this);
+    this.loginSession = this.loginSession.bind(this);
   }
+
+  componentDidMount(){
+
+  }
+
+  loginSession(){
+    let isLogin;
+    fetch('http://14.50.138.127:3001/')
+        .then((res) => res.json())
+        .then((res) => {
+          console.log('res.message',res.message)
+          isLogin = res.message;
+    });
+    console.log('check:',isLogin)
+    return isLogin;
+  }
+
   loginHandler(bool) {
     this.setState({
       isLogin: bool,
     });
   }
+  
   getUserInfo() {
-    fetch('http://localhost:4000/user', {
+    fetch('http://14.50.138.127:3001/user/info', {
       method: 'GET',
       credentials: 'include',
     })
@@ -38,20 +58,34 @@ class App extends React.Component {
         console.log(this.state);
       });
   }
+  
 
   render() {
-    const { isLogin, userInfo } = this.state;
+    const { userInfo } = this.state;
+    const isLogin = this.loginSession(); 
+
+    console.log(this.loginSession);
+    console.log('isLogin',isLogin)
     return (
       <Router>
         <div className="App">
           <div className="auth-wrapper">
             <div className="auth-inner">
               <Switch>
-                <Route exact path="/" component={Login} />
-                <Route path="/sign-in" component={Login} />
-                <Route path="/sign-up" component={Signup} />
-                <Route path="/LocationSearch" component={LocationSearch} />
-                <Route path="/Weather" component={Weather} />
+                <Route
+                  exact
+                  path="/"
+                  render={() => {
+                    if (isLogin) {
+                      return <LocationSearch />
+                    }
+                    return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
+                  }}
+                />
+                <Route path='/Signin' render={() => <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />}/>
+                <Route path="/Signup" component={Signup} />
+                <Route path="/LocationSearch" component={LocationSearch}/>
+                <Route path="/Weather" component={Weather}/>
               </Switch>
             </div>
           </div>

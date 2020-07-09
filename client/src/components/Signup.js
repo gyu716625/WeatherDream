@@ -7,7 +7,6 @@ class Signup extends React.Component {
       email: '',
       password: '',
       username: '',
-      isSignup: false,
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
@@ -15,7 +14,6 @@ class Signup extends React.Component {
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
-  
   render() {
     return this.state.isSignup ? (
       <Redirect to="/login" />
@@ -26,7 +24,7 @@ class Signup extends React.Component {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              let a = fetch('http://localhost:3001/user/signup', {
+              fetch('http://14.50.138.127:3001/user/signup', {
                 method: 'POST',
                 body: JSON.stringify(this.state),
                 headers: {
@@ -35,14 +33,15 @@ class Signup extends React.Component {
               }).then((res) => {
                 if (res.status === 200) {
                   alert('Membership. Please log in.');
-                  this.setState({
-                    isSignup: true,
-                  });
+                  this.props.history.push("/Signin");
                 } else if (res.status === 409) {
                   alert('You are already registered.');
                 }
+                console.log("res:", res);
               });
-              console.log(a);
+
+              
+
             }}
           >
             <div>
@@ -84,7 +83,7 @@ class Signup extends React.Component {
               ></input>
             </div>
             <div>
-              <Link to="/login">Already have an ID?</Link>
+              <Link to="/Signin">Already have an ID?</Link>
             </div>
             <button
               style={{
@@ -105,4 +104,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
