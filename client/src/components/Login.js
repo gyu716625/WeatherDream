@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, Route, withRouter, Redirect } from 'react-router-dom';
+import Signup from './Signup';
+import LocationSearch from './LocationSearch';
 
 class Login extends React.Component {
   constructor(props) {
@@ -22,64 +24,65 @@ class Login extends React.Component {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              
-              fetch('http://14.50.138.127:3001/user/signin', {
-                method: 'POST',
+              fetch("http://14.50.138.127:3001/user/signin", {
+                method: "POST",
                 body: JSON.stringify(this.state),
-                credentials: 'include',
+                credentials: "include",
                 headers: {
-                  'Content-Type': 'application/json',
+                  "Content-Type": "application/json",
                 },
               }).then((res) => {
                 if (res.status === 200) {
-                  this.props.loginHandler(true);  // 로그인 true 변경
+                  this.props.loginHandler(true); // 로그인 true 변경
                   //this.props.getUserInfo();
                 }
               });
             }}
           >
             <div>
-            <label>Email address : </label>
+              <label>Email address : </label>
               <input
                 style={{
-                  width: '400px',
-                  height: '30px',
-                  margin: '5px',
-                  borderRadius: '5px',
+                  width: "400px",
+                  height: "30px",
+                  margin: "5px",
+                  borderRadius: "5px",
                 }}
                 type="email"
                 placeholder="Enter email"
-                onChange={this.handleInputValue('email')}
+                onChange={this.handleInputValue("email")}
               ></input>
             </div>
             <div>
-            <label>Password : </label>
+              <label>Password : </label>
               <input
                 style={{
-                  width: '400px',
-                  height: '30px',
-                  margin: '5px',
-                  borderRadius: '5px',
+                  width: "400px",
+                  height: "30px",
+                  margin: "5px",
+                  borderRadius: "5px",
                 }}
                 type="password"
                 placeholder="Enter password"
-                onChange={this.handleInputValue('password')}
+                onChange={this.handleInputValue("password")}
               ></input>
             </div>
-            <button
-              style={{
-                width: '200px',
-                height: '30px',
-                margin: '5px',
-                borderRadius: '5px',
-                backgroundColor: 'skyblue',
-              }}
-              type="submit"
-            >
-              Submit
-            </button>
+            <Link to={"/LocationSearch"}>
+              <button
+                style={{
+                  width: "200px",
+                  height: "30px",
+                  margin: "5px",
+                  borderRadius: "5px",
+                  backgroundColor: "skyblue",
+                }}
+                type="submit"
+              >
+                Submit
+              </button>
+            </Link>
             <div>
-              <Link to="/sign-up">Join Us</Link>
+              <Link to={"/Signup"}>Join Us</Link>
             </div>
           </form>
         </center>

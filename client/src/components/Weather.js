@@ -29,7 +29,6 @@ class Weather extends Component {
   }
 
   setWeatherInfo = (weather) => {
-    console.log(weather)
     this.setState({
       location: weather.name,
       weatherIcon: weather.weather[0].icon,
@@ -37,7 +36,6 @@ class Weather extends Component {
       weatherTempMax: Math.round(weather.main.temp_max - 273.15),
       weatherTempMin: Math.round(weather.main.temp_min - 273.15),
     });
-    
   }
 
   render() {

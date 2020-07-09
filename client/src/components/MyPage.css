@@ -127,7 +127,7 @@
   color: rgb(255, 182, 182);
   margin: 3%;
 }
-
+.linkTag {display: block; text-decoration: none;}
 .locationInfo {margin: 20% 0 10% 0; cursor: pointer;}
 .commentList {cursor: pointer;}
 
@@ -135,10 +135,11 @@
   font-size: 30px;
   color: rgb(55, 55, 55);
   margin-right: 10%;
-  font-weight: 700;
+	font-weight: 700;
+	vertical-align: bottom;
 }
 
-.locationInfo > svg, .commentList > svg {
+.linkTag > svg, .commentList > svg {
   width: 40px;
   height: 40px;
 }

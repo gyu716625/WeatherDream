@@ -4,6 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { GrLocation } from 'react-icons/gr';
 import { AiOutlineComment } from 'react-icons/ai';
 import CommentList from './CommentList';
+import { Link } from "react-router-dom";
 
 const MyPage = () => {
 
@@ -41,8 +42,10 @@ const MyPage = () => {
             <span className="userName">Leehyojin</span>
           </div>
           <div className="locationInfo">
-            <strong className="infoContent">중구 세종대로 110</strong>
-            <GrLocation />
+            <Link to={"/LocationSearch"} className="linkTag">
+              <strong className="infoContent">중구 세종대로 110</strong>
+              <GrLocation />
+            </Link>
           </div>
           <div className="commentList" onClick={() => commentToggleHandler()}>
             <strong className="infoContent">내 댓글 보기</strong>
@@ -50,7 +53,10 @@ const MyPage = () => {
           </div>
         </section>
       </div>
-      <CommentList listClickToggle={listClickToggle} commentToggleHandler={commentToggleHandler}/>
+      <CommentList
+        listClickToggle={listClickToggle}
+        commentToggleHandler={commentToggleHandler}
+      />
     </nav>
   );
 };

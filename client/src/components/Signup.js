@@ -10,6 +10,7 @@ class Signup extends React.Component {
     };
     this.handleInputValue = this.handleInputValue.bind(this);
   }
+
   handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
@@ -33,7 +34,7 @@ class Signup extends React.Component {
               }).then((res) => {
                 if (res.status === 200) {
                   alert('Membership. Please log in.');
-                  this.props.history.push("/sign-in");
+                  this.props.history.push("/Signin");
                 } else if (res.status === 409) {
                   alert('You are already registered.');
                 }
@@ -83,7 +84,7 @@ class Signup extends React.Component {
               ></input>
             </div>
             <div>
-              <Link to="/login">Already have an ID?</Link>
+              <Link to="/Signin">Already have an ID?</Link>
             </div>
             <button
               style={{
