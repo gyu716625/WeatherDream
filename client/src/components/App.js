@@ -1,5 +1,5 @@
 /*global kakao*/ 
-import React, { Component } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
@@ -53,7 +53,7 @@ class App extends React.Component {
 
   render() {
     const { isLogin, userInfo } = this.state;
-
+    return (
       <div>
         <Router>
     <div className="App">
@@ -84,7 +84,6 @@ class App extends React.Component {
             <Route path="/sign-up" component={Signup} />
           </Switch>
         </div>
-
       </div>
     </div></Router>
       </div>
