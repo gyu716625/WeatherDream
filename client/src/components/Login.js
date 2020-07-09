@@ -40,8 +40,8 @@ class Login extends React.Component {
                 }
               }).then((res)=>{
                 console.log(res);
-                //this.loginHandler(res.isLogin); // 로그인 true 변경
                 cookie.save('isLogin', res.isLogin);
+                this.props.loginHandler(cookie.load('isLogin')); // 로그인 isLogin으로 변경
                 //this.props.getUserInfo();
               });
             }}

@@ -112,8 +112,20 @@ class App extends React.Component {
                 />
                 <Route path='/Signin' render={() => <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />}/>
                 <Route path="/Signup" component={Signup} />
-                <Route path="/LocationSearch" component={LocationSearch}/>
-                <Route path="/Weather" component={Weather}/>
+                <Route path="/LocationSearch" render={() => {
+                    if (cookie.load('isLogin')) {
+                      return <LocationSearch />
+                    }
+                    return <Redirect path='/LocationSearch' to='/Signin'/>
+                    //return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
+                  }}/>
+                <Route path="/Weather" render={() => {
+                    if (cookie.load('isLogin')) {
+                      return <Weather />
+                    }
+                    return <Redirect path='/Weather' to='/Signin'/>
+                    //return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
+                  }}/>
               </Switch>
             </div>
           </div>
