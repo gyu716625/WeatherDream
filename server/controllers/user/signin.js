@@ -23,12 +23,16 @@ module.exports = {
         } else {
           // 데이터베이스에 유저가 존재한다면
           // 찾은 유저 id값을 session userid 값에 매핑해주는 작업 필요(세션 기능 구현)
-          sess.userId = result.id;
-          sess.isLogined = true; // 로그인에 성공했다는 값을 세션에 넣어준다.
-          // res.cookie('isLogined', 'true');
+          // res.cookie('isLogin', true, {
+          //   maxAge: 60*60*1000,
+          //   httpOnly: false,
+          //   path:'http://localhost/3000',
+          //   });
           // 로그인에 성공했다면 res.redirect로 페이지 이동을 응답을 해줘도 된다.(클라이언트와 맞춰보기)
+          console.log('sucesssful signin');
           res.status(200).json({
             id: result.id,
+            isLogin: true,
           });
         }
       })
