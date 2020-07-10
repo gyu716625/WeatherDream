@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, Route, withRouter, Redirect } from 'react-router-dom';
-import Signup from './Signup';
-import LocationSearch from './LocationSearch';
 import cookie from 'react-cookies';
+import "./LoginANDSignup.css";
+import { GoSignIn } from "react-icons/go";
 
 class Login extends React.Component {
   constructor(props) {
@@ -19,10 +19,11 @@ class Login extends React.Component {
   };
   render() {
     return (
-      <div>
-        <center>
-          <h1>Sign In</h1>
+      <div className="logForm">
+        <center className="innerForm">
+          <h1 className="formTitle">Sign In</h1>
           <form
+            className="formWrap"
             onSubmit={(e) => {
               e.preventDefault();
               fetch("http://14.50.138.127:3001/user/signin", {
@@ -32,67 +33,49 @@ class Login extends React.Component {
                 headers: {
                   "Content-Type": "application/json",
                 },
-              }).then((res) => {
-                if (res.status === 200) {
-                  // this.props.history.push({
-                  //   pathname: '/LocationSearch',
-                  //   state: { getUserInfo: this.props.getUserInfo }
-                  // })
-                  //this.props.history.push("/LocationSearch");
-                  return res.json();  
-                }
-              }).then((res)=>{
-                console.log(res);
-                cookie.save('isLogin', res.isLogin);
-                cookie.save('userId', res.id);
-                this.props.loginHandler(cookie.load('isLogin'), cookie.load('userId')); // 로그인 isLogin으로 변경
-                //this.props.getUserInfo(cookie.load('userId'));
-              });
+              })
+                .then((res) => {
+                  if (res.status === 200) {
+                    return res.json();
+                  }
+                })
+                .then((res) => {
+                  console.log(res);
+                  cookie.save("isLogin", res.isLogin);
+                  cookie.save("userId", res.id);
+                  this.props.loginHandler(
+                    cookie.load("isLogin"),
+                    cookie.load("userId")
+                  ); // 로그인 isLogin으로 변경
+                });
             }}
           >
-            <div>
+            <div className="inputWrapper">
               <label>Email address : </label>
               <input
-                style={{
-                  width: "400px",
-                  height: "30px",
-                  margin: "5px",
-                  borderRadius: "5px",
-                }}
+                className="inputSection"
                 type="email"
                 placeholder="Enter email"
                 onChange={this.handleInputValue("email")}
               ></input>
             </div>
-            <div>
+            <div className="inputWrapper">
               <label>Password : </label>
               <input
-                style={{
-                  width: "400px",
-                  height: "30px",
-                  margin: "5px",
-                  borderRadius: "5px",
-                }}
+                className="inputSection"
                 type="password"
                 placeholder="Enter password"
                 onChange={this.handleInputValue("password")}
               ></input>
             </div>
-              <button
-                style={{
-                  width: "200px",
-                  height: "30px",
-                  margin: "5px",
-                  borderRadius: "5px",
-                  backgroundColor: "skyblue",
-                }}
-                type="submit"
-              >
+            <Link to={"/LocationSearch"}>
+              <button className="submitBtn" type="submit">
                 Submit
               </button>
-            <div>
-              <Link to={"/Signup"}>Join Us</Link>
-            </div>
+            </Link>
+            <Link to={"/Signup"}>
+              Join Us <GoSignIn />
+            </Link>
           </form>
         </center>
       </div>

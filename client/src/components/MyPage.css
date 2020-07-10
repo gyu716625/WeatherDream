@@ -132,10 +132,10 @@
 .commentList {cursor: pointer;}
 
 .infoContent {
-  font-size: 30px;
+  font-size: 35px;
   color: rgb(55, 55, 55);
   margin-right: 10%;
-	font-weight: 700;
+	font-weight: 500;
 	vertical-align: bottom;
 }
 
@@ -144,14 +144,33 @@
   height: 40px;
 }
 
-
 /* 반응형 css */
+
+/* 420 이하 */
+@media screen and (max-width: 559px) {
+  .sideMenu {
+		transform: translateX(-80%);
+		width: 100%;
+	}
+	.userInfo {width: 100%;}
+	.userInfo > svg {
+		width: 40%;
+		height: 40%;
+	}
+	.userInfo > .userName {font-size: 30px;}
+	.infoContent {font-size: 25px;}
+}
+
 /* 421이상 859이하 */
-@media screen and (max-width: 859px) {
+@media screen and (min-width:560px) and (max-width: 859px) {
   .sideMenu {
 		transform: translateX(-85%);
 		width: 100%;
 	}
 }
+	
+
+ 
+
 
 

@@ -47,3 +47,32 @@
   letter-spacing: 2px;
   cursor: pointer;
 }
+
+
+
+/* 반응형 css */
+
+/* 420 이하 */
+@media screen and (max-width: 609px) {
+  .searchSection {margin-top: 25%;}
+  #map {
+    width: 90%;
+    height: 300px;
+    margin-top: 7%;
+  }
+}
+
+/* 421이상 859이하 */
+@media screen and (min-width:610px) and (max-width: 859px) {
+  .searchSection {margin-top: 15%;}
+}
+
+/* 860이상 1083이하 */
+@media screen and (min-width:860px) and (max-width: 1290px) {
+  .searchSection {margin-top: 5%;}
+}
+
+	
+
+ 
+

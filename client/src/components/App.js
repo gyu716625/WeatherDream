@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import LocationSearch from './LocationSearch';
 import Weather from './Weather';
-import MyPage from './MyPage';
 import Login from "./Login";
 import Signup from "./Signup";
 import cookie from 'react-cookies';
@@ -40,7 +39,6 @@ class App extends React.Component {
           console.log('res.message',res.message)
           isLogin = res.message;
     });
-    console.log('check:',isLogin)
     return isLogin;
   }
 
@@ -61,15 +59,12 @@ class App extends React.Component {
       .then((json) => {
         //this.setState({ userInfo: json });
         //console.log(this.state);
-        console.log(json);
         this.setState({
           userInfo:{
             username: json.username,
             email: json.email,
           },
-          
         })
-      
       });
     } else {
       console.log('사용자 정보를 불러올 수 없습니다.')
@@ -85,45 +80,70 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          <div className="auth-wrapper">
-            <div className="auth-inner">
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={() => {
-                    if (cookie.load('isLogin')) {
-                      return <LocationSearch  getUserInfo={this.getUserInfo} session={this.state} />
-                    }
-                    return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
-                  }}
-                />
-                <Route path='/Signin' render={() => {
-                  if (cookie.load('isLogin')) {
-                    return <Redirect path='/Signin' to='/LocationSearch'/>
-                  }
-                  return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => {
+                if (cookie.load("isLogin")) {
+                  return (
+                    <LocationSearch
+                      getUserInfo={this.getUserInfo}
+                      session={this.state}
+                    />
+                  );
                 }
-                />
-                
-                <Route path="/Signup" component={Signup} />
-                <Route path="/LocationSearch" render={() => {
-                    if (cookie.load('isLogin')) {
-                      return <LocationSearch getUserInfo={this.getUserInfo} session={this.state} />
-                    }
-                    return <Redirect path='/LocationSearch' to='/Signin'/>
-                    //return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
-                  }}/>
-                <Route path="/Weather" render={() => {
-                    if (cookie.load('isLogin')) {
-                      return <Weather />
-                    }
-                    return <Redirect path='/Weather' to='/Signin'/>
-                    //return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
-                  }}/>
-              </Switch>
-            </div>
-          </div>
+                return (
+                  <Login
+                    loginHandler={this.loginHandler}
+                    getUserInfo={this.getUserInfo}
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/Signin"
+              render={() => {
+                if (cookie.load("isLogin")) {
+                  return <Redirect path="/Signin" to="/LocationSearch" />;
+                }
+                return (
+                  <Login
+                    loginHandler={this.loginHandler}
+                    getUserInfo={this.getUserInfo}
+                  />
+                );
+              }}
+            />
+
+            <Route path="/Signup" component={Signup} />
+            <Route
+              path="/LocationSearch"
+              render={() => {
+                if (cookie.load("isLogin")) {
+                  return (
+                    <LocationSearch
+                      getUserInfo={this.getUserInfo}
+                      session={this.state}
+                    />
+                  );
+                }
+                return <Redirect path="/LocationSearch" to="/Signin" />;
+                //return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
+              }}
+            />
+            <Route
+              path="/Weather"
+              component={Weather}
+              render={() => {
+                if (cookie.load("isLogin")) {
+                  return <Weather session={this.state} />;
+                }
+                return <Redirect path="/Weather" to="/Signin" />;
+                //return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
+              }}
+            />
+          </Switch>
         </div>
       </Router>
     );
