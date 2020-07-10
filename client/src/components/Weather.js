@@ -1,6 +1,7 @@
 import MyPage from './MyPage';
 import { weather_API_KEY } from "../API_KEY";
 import './Weather.css';
+import Logout from './Logout';
 
 // UI로 보여줄 요소
 // 비, 눈, 맑음, 
@@ -41,7 +42,8 @@ class Weather extends Component {
   render() {
     return (
       <React.Fragment>
-        <MyPage />
+        <MyPage userInfo={this.state.location} />
+        <Logout />
         <div className="weatherWrap">
           <section className="weatherInner">
             <div className="location">{this.state.location.toUpperCase()}</div>

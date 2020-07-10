@@ -1,3 +1,5 @@
+.listEntry * {font-weight: 500; font-size: 20px;}
+
 .listEntry + .listEntry {
   margin-top: 5%;
   border-top: 2px solid #e4e4e4;
@@ -11,25 +13,32 @@
   vertical-align: top;
 }
 
-.userName_CT {
-  margin-right: 3%;
-  font-size: 18px;
-}
+.userName_CT {margin-right: 3%;}
 
-.location_CT {
-  color: #4b4b4b;
-  font-weight: 500;
-}
+.location_CT {color: #4b4b4b;}
 
 .weather_CT {float: right;}
 
 .context_CT {
-  font-weight: 600;
+  font-size: 25px;
   margin: 4%;
 }
 
 .optionItems {position: relative;}
 .chat_like {margin-right: 4%;}
-.optionItems > strong {font-size: 16px;}
 .optionItems svg {width: 4%; height: 4%; margin-right: 1%;}
-.create_at {float: right;}
+.create_at {float: right; font-size: 18px;}
+
+
+/* 반응형 css */
+
+/* 420 이하 */
+@media screen and (max-width: 559px) {
+  .userName_CT {margin-right: 5%; font-size: 18px;}
+  .location_CT {font-size: 15px;}
+  .weather_CT {font-size: 18px;}
+  .context_CT {font-size: 20px;}
+  .chat_like, .chat_unlike {margin-right: 4%; font-size: 15px;}
+  .optionItems svg {width: 6%; height: 6%;}
+  .create_at {float: right; font-size: 14px;}
+}

@@ -1,0 +1,57 @@
+.formTitle {margin: 5% 0;}
+
+.inputSection {
+  width: 80%;
+  height: 30px;
+  border-radius: 5px;
+  padding-left: 1%;
+}
+
+.inputWrapper + .inputWrapper {margin-top: 5%;}
+
+.inputWrapper > label {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 3%;
+}
+
+.alreadyID {margin: 5% 0;}
+
+.alreadyID > a {
+  text-decoration: none;
+  display: block;
+  color: rgb(255, 57, 57);
+}
+
+.submitBtn {
+  background: rgb(255, 160, 160);
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 25px;
+  cursor: pointer;
+  margin: 5% 0;
+  display: block;
+}
+
+.formWrap > a {
+  display: inline-block;
+  text-decoration: none;
+  color: rgb(255, 160, 160);
+  font-size: 20px;
+  font-weight: 500;
+  transition: all .5s ease;
+}
+
+.formWrap > a > svg {vertical-align: top;}
+
+.formWrap > a:hover {
+  transition: all .5s ease;
+}
+
+/* style={{
+                  width: "400px",
+                  height: "30px",
+                  margin: "5px",
+                  borderRadius: "5px",
+                }} */

@@ -4,9 +4,9 @@ import { kakaoMap_API_KEY } from "../API_KEY";
 import './LocationSearch.css';
 import { GoSearch } from "react-icons/go";
 import MyPage from './MyPage';
-import { Link, Route } from "react-router-dom";
-import Weather from './Weather';
+import { Link } from "react-router-dom";
 import cookie from 'react-cookies';
+import Logout from './Logout';
 // latitude: 위도 , longitude: 경도
 
 export default class LocationSearch extends Component {
@@ -86,10 +86,10 @@ export default class LocationSearch extends Component {
   }
   
   render() {
-    const a = `${this.state.latitude}&${this.state.longitude}`
     return (
       <React.Fragment>
-        <MyPage userInfo={this.props.session.userInfo}/>
+        <MyPage userInfo={this.props.session.userInfo.username}/>
+        <Logout/>
         <div className="locationSearch">
           <section className="searchSection">
             <input
@@ -110,7 +110,8 @@ export default class LocationSearch extends Component {
             pathname : "/Weather",
             state : {
               latitude: this.state.latitude,
-              longitude: this.state.longitude
+              longitude: this.state.longitude,
+              userName: this.props.session.userInfo
             }
           }}>
             <button type="button" className="successBtn">

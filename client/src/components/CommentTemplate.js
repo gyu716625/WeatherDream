@@ -5,6 +5,9 @@ import { AiOutlineDislike } from 'react-icons/ai';
 import './CommentTemplate.css';
 
 const CommentTemplate = ({ commentList, username }) => {
+
+  const createdFormat = commentList.createdAt.split('T', 1);
+
   return (
     <div className="listEntry">
       <section className="mainContent">
@@ -23,7 +26,7 @@ const CommentTemplate = ({ commentList, username }) => {
           <AiOutlineDislike />
           {commentList.chat_unlike}
         </strong>
-        <strong className="create_at">{commentList.createdAt}</strong>
+        <strong className="create_at">{createdFormat}</strong>
       </section>
     </div>
   );

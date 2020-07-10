@@ -1,6 +1,5 @@
 import socketio from 'socket.io-client';
 import React, { useState } from "react";
-import "./Chat.css";
 import { FaUserCircle, FaJsSquare } from "react-icons/fa";
 import { GrLocation } from 'react-icons/gr';
 import { AiOutlineComment } from 'react-icons/ai';

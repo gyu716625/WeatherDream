@@ -1,6 +1,9 @@
-.APP {
+* {font-family: 'Do Hyeon', sans-serif; letter-spacing: 3px;}
+
+.App {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .App-logo {

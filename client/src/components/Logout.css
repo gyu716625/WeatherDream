@@ -1,0 +1,53 @@
+.logoutWrap {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  z-index: 100;
+  width: 10%;
+  text-align: right;
+}
+
+.logoutBtn {
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.logoutBtn > svg {
+  vertical-align: top;
+  transition: all .5s ease;
+}
+
+.logoutWrap:hover svg {
+  margin-left: 5%;
+  transition: all .5s ease;
+}
+
+/* 반응형 css */
+
+/* 420 이하 */
+@media screen and (max-width: 639px) {
+  .logoutWrap{width: 30%;}
+  .logoutBtn {font-size: 20px;}
+}
+
+/* 421이상 859이하 */
+@media screen and (min-width:640px) and (max-width: 939px) {
+  .logoutWrap{
+    width: 25%;
+    top: 5%;
+  }
+}
+
+/* 860이상 1083이하 */
+@media screen and (min-width:940px) and (max-width: 1290px) {
+  .logoutWrap{width: 20%;}
+  .logoutBtn {font-size: 35px;}
+}
+
+	
+
+ 

@@ -11,56 +11,7 @@ class CommentList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      commentLists: [
-        {
-          id: "1",
-          context:
-            "오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요",
-          country: "jeju-do",
-          chat_like: 1,
-          chat_unlike: 3,
-          weather: "맑음",
-          createdAt: "2020-07-07",
-        },
-        {
-          id: "2",
-          context: "오늘 비가 내려요",
-          country: "jeju-do",
-          chat_like: 4,
-          chat_unlike: 6,
-          weather: "비",
-          createdAt: "2020-07-08",
-        },
-        {
-          id: "3",
-          context: "오늘 비가 내려요",
-          country: "jeju-do",
-          chat_like: 6,
-          chat_unlike: 0,
-          weather: "흐림",
-          createdAt: "2020-07-08",
-        },
-        {
-          id: "1",
-          context:
-            "오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요",
-          country: "jeju-do",
-          chat_like: 1,
-          chat_unlike: 3,
-          weather: "맑음",
-          createdAt: "2020-07-07",
-        },
-        {
-          id: "1",
-          context:
-            "오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요오늘 날씨가 맑아요",
-          country: "jeju-do",
-          chat_like: 1,
-          chat_unlike: 3,
-          weather: "맑음",
-          createdAt: "2020-07-07",
-        },
-      ],
+      commentLists: [],
     };
   }
 

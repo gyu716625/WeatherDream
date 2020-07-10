@@ -1,5 +1,4 @@
 .weatherWrap {
-  font-family: 'Do Hyeon', sans-serif;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -45,3 +44,50 @@
   margin-top: 2%;
   letter-spacing: 3px;
 }
+
+
+/* 반응형 css */
+
+/* 420 이하 */
+@media screen and (max-width: 619px) {
+  .weatherInner {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(255, 175, 175);
+    border-radius: 0;
+    padding: 10%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .location {margin-top: 25%; font-size: 30px;}
+  .weatherIcon {width: 60%; margin-top: 5%;}
+  .weatherTemp {margin-top: 10%; font-size: 40px;}
+  .highAndLowTemp {margin-top: 10%; font-size: 20px;}
+}
+
+/* 421이상 859이하 */
+@media screen and (min-width:620px) and (max-width: 859px) {
+  .weatherInner {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(255, 175, 175);
+    border-radius: 0;
+    padding: 20%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .location {margin-top: 5%; font-size: 50px;}
+  .weatherIcon {width: 60%; margin-top: 5%;}
+  .weatherTemp {margin-top: 10%; font-size: 50px;}
+  .highAndLowTemp {margin-top: 5%; font-size: 30px;}
+}
+
+/* 860이상 1083이하 */
+@media screen and (min-width:860px) and (max-width: 1083px) {
+  .weatherInner {padding: 10%}
+  .weatherIcon {width: 100%; margin-top: 5%;}
+  .weatherTemp {margin-top: 15%; font-size: 70px;}
+  .highAndLowTemp {margin-top: 10%; font-size: 40px;}
+}
+
+	
