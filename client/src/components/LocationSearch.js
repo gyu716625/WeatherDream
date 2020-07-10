@@ -6,6 +6,7 @@ import { GoSearch } from "react-icons/go";
 import MyPage from './MyPage';
 import { Link, Route } from "react-router-dom";
 import Weather from './Weather';
+import cookie from 'react-cookies';
 // latitude: 위도 , longitude: 경도
 
 export default class LocationSearch extends Component {
@@ -17,6 +18,7 @@ export default class LocationSearch extends Component {
       latitude: 0,
       longitude: 0,
     };
+    this.props.getUserInfo(cookie.load('userId'));
   }
 
   addScript = (locationValue, clicked) => {
@@ -71,7 +73,7 @@ export default class LocationSearch extends Component {
   }
   
   componentDidMount(){
-    this.addScript("중구 세종대로 110");
+    this.addScript("중구 세종대로 110");  
   }
 
   locationSettingHandler = () => {
@@ -87,7 +89,7 @@ export default class LocationSearch extends Component {
     const a = `${this.state.latitude}&${this.state.longitude}`
     return (
       <React.Fragment>
-        <MyPage/>
+        <MyPage userInfo={this.props.session.userInfo}/>
         <div className="locationSearch">
           <section className="searchSection">
             <input

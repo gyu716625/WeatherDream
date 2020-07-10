@@ -65,20 +65,19 @@ class CommentList extends Component {
   }
 
   componentDidMount(){
-    fetch('https://localhost:3001/user/mypage/diary/1')
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
+    
   }
 
   render() {
+    console.log(this.props.comment)
     return this.props.listClickToggle ? (
       <React.Fragment>
         <div className={this.props.listClickToggle ? "commentWrap activeComment" : "commentWrap"}>
           <span className="closeBtn" onClick={() => this.props.commentToggleHandler()}>
             <MdExitToApp />
           </span>
-          {this.state.commentLists.map((el) => (
-            <CommentTemplate key={uuid()} commentList={el} />
+          {this.props.comment.map((el) => (
+            <CommentTemplate key={uuid()} commentList={el} username={this.props.username} />
           ))}
         </div>
         <div className="wrapBg activeBg"></div>

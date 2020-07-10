@@ -4,12 +4,12 @@ import { AiOutlineLike } from 'react-icons/ai';
 import { AiOutlineDislike } from 'react-icons/ai';
 import './CommentTemplate.css';
 
-const CommentTemplate = ({ commentList }) => {
+const CommentTemplate = ({ commentList, username }) => {
   return (
     <div className="listEntry">
       <section className="mainContent">
         <RiUserHeartLine />
-        <strong className="userName_CT">Leehyojin</strong>
+        <strong className="userName_CT">{username}</strong>
         <strong className="location_CT">{commentList.country}</strong>
         <strong className="weather_CT">{commentList.weather}</strong>
         <p className="context_CT">{commentList.context}</p>

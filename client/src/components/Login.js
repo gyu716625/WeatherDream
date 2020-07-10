@@ -24,25 +24,29 @@ class Login extends React.Component {
           <h1>Sign In</h1>
           <form
             onSubmit={(e) => {
-              console.log('submit');
               e.preventDefault();
               fetch("http://14.50.138.127:3001/user/signin", {
                 method: "POST",
-                body: JSON.stringify({email:'q@q',password:'q'}),
+                body: JSON.stringify(this.state),
                 credentials: "include",
                 headers: {
                   "Content-Type": "application/json",
                 },
               }).then((res) => {
                 if (res.status === 200) {
-                  this.props.history.push("/LocationSearch");
+                  // this.props.history.push({
+                  //   pathname: '/LocationSearch',
+                  //   state: { getUserInfo: this.props.getUserInfo }
+                  // })
+                  //this.props.history.push("/LocationSearch");
                   return res.json();  
                 }
               }).then((res)=>{
                 console.log(res);
                 cookie.save('isLogin', res.isLogin);
-                this.props.loginHandler(cookie.load('isLogin')); // 로그인 isLogin으로 변경
-                //this.props.getUserInfo();
+                cookie.save('userId', res.id);
+                this.props.loginHandler(cookie.load('isLogin'), cookie.load('userId')); // 로그인 isLogin으로 변경
+                //this.props.getUserInfo(cookie.load('userId'));
               });
             }}
           >
