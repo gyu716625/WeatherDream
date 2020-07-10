@@ -10,10 +10,23 @@ const app = express();
 const port = 3001;
 
 const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+// const io = require('socket.io')(http);
+const socketio = require('socket.io');
+
+const io = socketio.listen(http);
+
+io.on('connection', (socket) => {
+  console.log('사용자 접속: ', socket.client.id);
+
+  socket.on('chat-msg', (msg) => {
+    console.log('message: ', msg);
+
+    io.emit('chat-msg', msg);
+  });
+});
 
 // routers
-const basicRouter = require('./routes/basic');
+// const basicRouter = require('./routes/basic');
 const userRouter = require('./routes/user');
 const chatRouter = require('./routes/chat');
 
@@ -63,7 +76,7 @@ app.use(
 );
 
 // base url routes
-app.use('/', basicRouter);
+// app.use('/', basicRouter);
 app.use('/user', userRouter);
 app.use('/chat', chatRouter);
 

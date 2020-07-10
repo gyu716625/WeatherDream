@@ -6,3 +6,5 @@ const { basicController } = require('../controllers');
 
 // * GET /
 router.get('/', basicController.get);
+
+module.exports = router;

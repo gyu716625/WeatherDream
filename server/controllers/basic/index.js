@@ -1,5 +1,5 @@
 module.exports = {
-  get: (res, req) => {
-    req.status(200).json({ message: 'successful!' });
+  get: (req, res) => {
+    res.status(200).json({ message: 'access get baseurl' });
   },
 };
