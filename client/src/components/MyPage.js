@@ -5,11 +5,12 @@ import { GrLocation } from 'react-icons/gr';
 import { AiOutlineComment } from 'react-icons/ai';
 import CommentList from './CommentList';
 import { Link } from "react-router-dom";
+import cookie from 'react-cookies';
 
-const MyPage = () => {
-
+const MyPage = (props) => {
   const [toggle, setToggle] = useState(false);
   const [listClickToggle, setListToggle] = useState(false);
+  const [comment, setComment] = useState([]);
 
   const SideMenuEvent = () => {
     toggle ? setToggle(false) : setToggle(true);
@@ -17,6 +18,24 @@ const MyPage = () => {
 
   const commentToggleHandler = () => {
     listClickToggle ? setListToggle(false) : setListToggle(true);
+  }
+
+  const getDiarydata = (id) => {
+    fetch(`http://14.50.138.127:3001/user/mypage/diary/${id}`)
+      .then(data => {
+        console.log(data)
+        if(data.status === 200) {
+          return data.json();
+        }
+      })
+      .then(json => {
+        console.log('json.data',json.data);
+        setComment(json.data);
+        //comment.push(json.data);
+      })
+      .catch(err => console.log(err))
+
+      //console.log('comment',comment);
   }
 
   return (
@@ -39,7 +58,7 @@ const MyPage = () => {
         <section className="pageContent">
           <div className="userInfo">
             <FaUserCircle />
-            <span className="userName">Leehyojin</span>
+            <span className="userName">{props.userInfo.username}</span>
           </div>
           <div className="locationInfo">
             <Link to={"/LocationSearch"} className="linkTag">
@@ -47,13 +66,18 @@ const MyPage = () => {
               <GrLocation />
             </Link>
           </div>
-          <div className="commentList" onClick={() => commentToggleHandler()}>
+          <div className="commentList" onClick={() => {
+            console.log('test');
+            getDiarydata(cookie.load('userId'));
+            return commentToggleHandler()}}>
             <strong className="infoContent">내 댓글 보기</strong>
             <AiOutlineComment />
           </div>
         </section>
       </div>
       <CommentList
+        username = {props.userInfo.username}
+        comment = {comment}
         listClickToggle={listClickToggle}
         commentToggleHandler={commentToggleHandler}
       />

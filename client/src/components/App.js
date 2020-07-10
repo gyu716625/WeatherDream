@@ -18,8 +18,9 @@ class App extends React.Component {
     super();
     this.state = {
       isLogin: false,
-      userInfo: { username: '', email: '', mobile: '' },
-      token: cookie.load(),
+      userId: '',
+      userInfo: { username: '', email: '', },
+      token: cookie.load('userId'),
     };
     //console.log(document.cookie);
     this.loginHandler = this.loginHandler.bind(this);
@@ -43,57 +44,44 @@ class App extends React.Component {
     return isLogin;
   }
 
-  loginHandler(bool) {
+  loginHandler(bool,id) {
     this.setState({
       isLogin: bool,
+      userId: id,
     });
   }
   
-  getUserInfo() {
-    fetch('http://14.50.138.127:3001/user/info', {
+  getUserInfo(id) {
+    if(cookie.load('isLogin')){
+      fetch(`http://14.50.138.127:3001/user/mypage/info/${id}`, {
       method: 'GET',
       credentials: 'include',
-    })
+      })
       .then((res) => res.json())
       .then((json) => {
-        this.setState({ userInfo: json });
-        console.log(this.state);
+        //this.setState({ userInfo: json });
+        //console.log(this.state);
+        console.log(json);
+        this.setState({
+          userInfo:{
+            username: json.username,
+            email: json.email,
+          },
+          
+        })
+      
       });
+    } else {
+      console.log('사용자 정보를 불러올 수 없습니다.')
+    }
   }
   
+  componentDidUpdate(){
+    //console.log('this.state',this.state);
+  }
 
   render() {
     const { userInfo } = this.state;
-    //const isLogin; 
-    
-    /*
-    fetch('http://14.50.138.127:3001')
-        .then((res) => res.json())
-        .then((res) => {
-          console.log('res.message',res.message)
-          //localStorage.setItem('isLogin', res.message);
-    });
-    */
-  //  fetch("http://14.50.138.127:3001/user/signin", {
-  //               method: "POST",
-  //               body: JSON.stringify({email:'q@q',password:'q'}),
-  //               credentials: "include",
-  //               headers: {
-  //                 "Content-Type": "application/json",
-  //               },
-  //             }).then((res) => {
-  //               if (res.status === 200) {
-  //                 return res.json();  
-  //               }
-  //             }).then((res)=>{
-  //               console.log(res);
-  //               //this.loginHandler(res.isLogin); // 로그인 true 변경
-  //               cookie.save('isLogin', res.isLogin);
-  //               //this.props.getUserInfo();
-  //             });
-   
-
-    //console.log('isLogin',isLogin)
     return (
       <Router>
         <div className="App">
@@ -105,16 +93,23 @@ class App extends React.Component {
                   path="/"
                   render={() => {
                     if (cookie.load('isLogin')) {
-                      return <LocationSearch />
+                      return <LocationSearch  getUserInfo={this.getUserInfo} session={this.state} />
                     }
                     return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
                   }}
                 />
-                <Route path='/Signin' render={() => <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />}/>
+                <Route path='/Signin' render={() => {
+                  if (cookie.load('isLogin')) {
+                    return <Redirect path='/Signin' to='/LocationSearch'/>
+                  }
+                  return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />}
+                }
+                />
+                
                 <Route path="/Signup" component={Signup} />
                 <Route path="/LocationSearch" render={() => {
                     if (cookie.load('isLogin')) {
-                      return <LocationSearch />
+                      return <LocationSearch getUserInfo={this.getUserInfo} session={this.state} />
                     }
                     return <Redirect path='/LocationSearch' to='/Signin'/>
                     //return <Login loginHandler={this.loginHandler} getUserInfo={this.getUserInfo} />
